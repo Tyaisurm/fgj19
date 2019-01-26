@@ -6,6 +6,7 @@ public class PlanetScript : MonoBehaviour
 {
     public int rotateSpeed;
     public bool randomColor;
+    public bool isSolarSystem;
     private Renderer m_Renderer;
     SphereCollider gravityBound;
 
@@ -21,6 +22,10 @@ public class PlanetScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed);
+        if (isSolarSystem) {
+            transform.Rotate(Vector3.back * Time.deltaTime * rotateSpeed);
+        } else {
+            transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed);
+        }
     }  
 }
