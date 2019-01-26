@@ -7,10 +7,13 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     public CharacterController2D controller;
-    public float runSpeed = 40f;
+    public float runSpeed = 20f;
+    public bool itemIsPickupable = false;
+    public bool itemIsOperatable = false;
     float horizontalMove = 0f;
 
     bool jump = false;
+    bool runFast = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,23 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
             animator.SetBool("isJumping", true);
         }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            //if (runFast) { runFast = false; runSpeed = 20f; } else { runSpeed = 40f; runFast = true; }
+            runSpeed = 40f;
+        }
+        else {
+            runSpeed = 20f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && itemIsPickupable)
+        {
+            animator.SetTrigger("canPickUp");
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && itemIsOperatable) {
+            animator.SetTrigger("canOperate");
+        }
+
     }
 
     public void OnLanding() {
