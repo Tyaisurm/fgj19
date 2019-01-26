@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip pickUpSound;
 
     bool jump = false;
-    bool runFast = false;
+    //bool runFast = false;
     bool crouching = false;
 
     // Start is called before the first frame update
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
             animator.SetBool("isJumping", true);
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && !crouching)
         {
             //if (runFast) { runFast = false; runSpeed = 20f; } else { runSpeed = 40f; runFast = true; }
             runSpeed = 40f;
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("canOperate");
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && runSpeed == 20f)
         {
             crouching = true;
         }
