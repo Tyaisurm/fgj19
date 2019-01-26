@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - Gravity
+  - ShowOnPause
   layers:
   - Default
   - TransparentFX
