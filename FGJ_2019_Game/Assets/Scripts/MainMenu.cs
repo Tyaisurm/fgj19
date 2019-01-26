@@ -45,4 +45,13 @@ public class MainMenu : MonoBehaviour
 
         gameObject.SetActive(false);
     }
+
+    public void Update ()
+    {
+        if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log("Egg");
+            SceneManager.LoadScene("home", LoadSceneMode.Single);
+        }
+    }
 }
