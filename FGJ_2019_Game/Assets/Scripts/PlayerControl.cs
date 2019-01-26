@@ -34,7 +34,6 @@ public class PlayerControl : MonoBehaviour
 
         arrow = this.gameObject.transform.GetChild(1).gameObject;
 
-        lorePhase = 1;
         passages = lore.text.Split('\n');
     }
 
