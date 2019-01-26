@@ -8,6 +8,7 @@ TagManager:
   - Gravity
   - ShowOnPause
   - Sun
+  - Lore
   layers:
   - Default
   - TransparentFX
