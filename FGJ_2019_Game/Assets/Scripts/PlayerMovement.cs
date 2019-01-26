@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public bool itemIsPickupable = false;
     public bool itemIsOperatable = false;
     float horizontalMove = 0f;
+    bool failsafe = false;
 
     AudioSource audioS;
 
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump")) {
             jump = true;
             animator.SetBool("isJumping", true);
+            failsafe = true;
         }
         if (Input.GetKey(KeyCode.LeftShift) && !crouching)
         {
@@ -67,8 +69,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void OnLanding() {
+        if (failsafe) { failsafe = false; return; }
         animator.SetBool("isJumping", false);
         DoubleStep();
+        //Debug.Log("isJumping FALSE");
     }
 
     public void OnCrouching(bool isCrouching) {
