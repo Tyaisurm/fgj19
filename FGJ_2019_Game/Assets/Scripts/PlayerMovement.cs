@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool jump = false;
     bool runFast = false;
+    bool crouching = false;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,15 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("canOperate");
         }
 
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            crouching = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            crouching = false;
+        }
+
     }
 
     public void OnLanding() {
@@ -61,8 +71,12 @@ public class PlayerMovement : MonoBehaviour
         DoubleStep();
     }
 
+    public void OnCrouching(bool isCrouching) {
+        animator.SetBool("IsCrouching", isCrouching);
+    }
+
     void FixedUpdate() {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouching, jump);
         jump = false;
     }
     public void Step() {
