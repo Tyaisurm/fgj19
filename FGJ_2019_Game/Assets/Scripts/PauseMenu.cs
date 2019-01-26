@@ -5,44 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    GameObject[] pausedGame;
-
-    // Start is called before the first frame
-    void Start()
-    {
-        Time.timeScale = 1;
-        pausedGame = GameObject.FindGameObjectsWithTag("ShowOnPause");
-        hidePaused();
-    }
+    public static bool isPaused = false;
+    public GameObject pauseUI;
     
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "space_test")
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
+            if (isPaused)
             {
-                if (Time.timeScale == 1)
-                {
-                    Time.timeScale = 0;
-                    showPaused();
-                }
-                else if (Time.timeScale == 0)
-                {
-                    Time.timeScale = 1;
-                    hidePaused();
-                }
+                Time.timeScale = 1;
+                hidePaused();
             }
-        }
-    }
-
-    // Press "Continue", unpauses game
-    public void Continue()
-    {
-        if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-            hidePaused();
+            else 
+            {
+                Time.timeScale = 0;
+                showPaused();
+            }
         }
     }
 
@@ -53,20 +33,18 @@ public class PauseMenu : MonoBehaviour
     }
 
     // Shows pause menu
-    public void showPaused()
+    void showPaused()
     {
-        foreach(GameObject x in pausedGame)
-        {
-            x.SetActive(true);
-        }
+        pauseUI.SetActive(true);
+        Time.timeScale = 0;
+        isPaused = true;
     }
 
     // Hides pause menu
     public void hidePaused()
     {
-        foreach (GameObject x in pausedGame)
-        {
-            x.SetActive(false);
-        }
+        pauseUI.SetActive(false);
+        Time.timeScale = 1;
+        isPaused = false;
     }
 }
