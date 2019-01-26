@@ -42,6 +42,10 @@ public class PlayerControl : MonoBehaviour
             rb.AddTorque(-transform.forward * Time.deltaTime * speed);
         }
 
+        if (Input.GetKey("space")) {
+            rb.velocity = rb.velocity * 0.9F;
+        }
+
         Instantiate(smoke, transform.position - transform.up / 3, transform.rotation);
 
         lookVector = destination.transform.position - arrow.transform.position;
@@ -57,7 +61,7 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Gravity") {
-            if (actualSpeed > 0.03 || other.tag == "Sun") {
+            if (actualSpeed > 0.04 || other.tag == "Sun") {
                 Instantiate(blast, transform.position, transform.rotation);
                 Destroy(gameObject);
             } else {

@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba21bd8700f73ad4883dbc2871a221af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 50
   gravity: 0.005
   blast: {fileID: 352732110182942639, guid: 2b99596149ff54b4596872576dd27b5e, type: 3}
   smoke: {fileID: 6139045068495955075, guid: 28f9e1d09b5008845919d9b0b0d2655d, type: 3}
@@ -357,15 +357,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425344599}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.52, y: -2.01, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.46878648, w: 0.88331157}
+  m_LocalPosition: {x: 6.518175, y: -2.0065637, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 698572054}
   - {fileID: 940681853}
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 55.911003}
 --- !u!1001 &698572053
 PrefabInstance:
   m_ObjectHideFlags: 0

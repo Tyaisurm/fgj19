@@ -20,7 +20,7 @@ public class UIControl : MonoBehaviour
     {
         if (player != null) {
             speedtext.text = string.Concat("Speed: ", Mathf.Round(pc.actualSpeed * 1000).ToString());
-            if (pc.actualSpeed > 0.03) {
+            if (pc.actualSpeed > 0.04) {
                 speedtext.color = Color.red;
             } else {
                 speedtext.color = Color.white;
