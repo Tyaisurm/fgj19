@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject smoke;
     public GameObject destination;
     public GameObject camera;
+    public Text speedtext;
 
     public float actualSpeed;
     
@@ -18,6 +20,12 @@ public class PlayerControl : MonoBehaviour
     private GameObject arrow;
     private Vector3 lookVector;
 
+    public static int lorePhase;
+    public TextAsset lore;
+    private string[] passages;
+    public Text loretext;
+    public GameObject panel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +33,9 @@ public class PlayerControl : MonoBehaviour
         lastPosition = Vector3.zero;
 
         arrow = this.gameObject.transform.GetChild(1).gameObject;
-        //arrow.transform.forward = Vector3.up;
+
+        lorePhase = 1;
+        passages = lore.text.Split('\n');
     }
 
     // Update is called once per frame
@@ -65,8 +75,28 @@ public class PlayerControl : MonoBehaviour
                 Instantiate(blast, transform.position, transform.rotation);
                 Destroy(gameObject);
             } else {
-                // TODO: go to planet
+                if (other.transform.position == destination.transform.position) {
+                    ActivateLore();
+                }
             }
         }
+    }
+
+    public void ActivateLore () {
+
+        panel.SetActive(true);
+        string totext = "";
+
+        foreach (string pass in passages) {
+            if (pass.StartsWith(lorePhase.ToString())) {
+                totext = totext + pass.Substring(1) + "\n\n";
+            }
+        }
+
+        loretext.text = totext;
+
+        lorePhase++;
+
+        gameObject.SetActive(false);
     }
 }

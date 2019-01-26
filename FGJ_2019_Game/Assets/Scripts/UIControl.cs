@@ -8,11 +8,13 @@ public class UIControl : MonoBehaviour
     public GameObject player;
     private Text speedtext;
     private PlayerControl pc;
+
     // Start is called before the first frame update
     void Start()
     {
         speedtext = gameObject.GetComponent<Text>();
         pc = player.GetComponent<PlayerControl>();
+        
     }
 
     // Update is called once per frame
