@@ -105,4 +105,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 30
-  gravity: 0.005
+  gravity: 0.01
+  randomColor: 1

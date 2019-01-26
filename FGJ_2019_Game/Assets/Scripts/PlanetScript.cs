@@ -6,6 +6,7 @@ public class PlanetScript : MonoBehaviour
 {
     public int rotateSpeed;
     public float gravity;
+    public bool randomColor;
     private Renderer m_Renderer;
     private GameObject player;
     SphereCollider gravityBound;
@@ -14,7 +15,9 @@ public class PlanetScript : MonoBehaviour
     void Start()
     {
         m_Renderer = GetComponent<Renderer>();
-        m_Renderer.material.color = new Color(Random.Range(0, 1F), Random.Range(0, 1F), Random.Range(0, 1F));
+        if (randomColor) {
+            m_Renderer.material.color = new Color(Random.Range(0, 1F), Random.Range(0, 1F), Random.Range(0, 1F));
+        }
 
         gravityBound = gameObject.AddComponent<SphereCollider>();
         gravityBound.isTrigger = true;
