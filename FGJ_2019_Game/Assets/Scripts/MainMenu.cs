@@ -48,10 +48,13 @@ public class MainMenu : MonoBehaviour
 
     public void Update ()
     {
+        Time.timeScale = 1;
+
         if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.H))
         {
             Debug.Log("Egg");
             SceneManager.LoadScene("home", LoadSceneMode.Single);
         }
+
     }
 }
