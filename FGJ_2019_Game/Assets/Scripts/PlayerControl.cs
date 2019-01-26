@@ -8,13 +8,24 @@ public class PlayerControl : MonoBehaviour
     public float gravity;
     public GameObject blast;
     public GameObject smoke;
+    public GameObject destination;
+    public GameObject camera;
+
+    public float actualSpeed;
     
     private Rigidbody rb;
+    private Vector3 lastPosition;
+    private GameObject arrow;
+    private Vector3 lookVector;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        lastPosition = Vector3.zero;
+
+        arrow = this.gameObject.transform.GetChild(1).gameObject;
+        //arrow.transform.forward = Vector3.up;
     }
 
     // Update is called once per frame
@@ -31,14 +42,31 @@ public class PlayerControl : MonoBehaviour
             rb.AddTorque(-transform.forward * Time.deltaTime * speed);
         }
 
+        if (Input.GetKey("space")) {
+            rb.velocity = rb.velocity * 0.9F;
+        }
+
         Instantiate(smoke, transform.position - transform.up / 3, transform.rotation);
+
+        lookVector = destination.transform.position - arrow.transform.position;
+        arrow.transform.LookAt(camera.transform.position, lookVector);
     }
+
+    void FixedUpdate()
+    {
+        actualSpeed = (transform.position - lastPosition).magnitude;
+        lastPosition = transform.position;
+    }  
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Gravity") {
-            Instantiate(blast, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (actualSpeed > 0.04 || other.tag == "Sun") {
+                Instantiate(blast, transform.position, transform.rotation);
+                Destroy(gameObject);
+            } else {
+                // TODO: go to planet
+            }
         }
     }
 }
