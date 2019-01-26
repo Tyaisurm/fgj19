@@ -8,17 +8,24 @@ public class PlayerControl : MonoBehaviour
     public float gravity;
     public GameObject blast;
     public GameObject smoke;
+    public GameObject destination;
+    public GameObject camera;
 
     public float actualSpeed;
     
     private Rigidbody rb;
     private Vector3 lastPosition;
+    private GameObject arrow;
+    private Vector3 lookVector;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         lastPosition = Vector3.zero;
+
+        arrow = this.gameObject.transform.GetChild(1).gameObject;
+        //arrow.transform.forward = Vector3.up;
     }
 
     // Update is called once per frame
@@ -36,6 +43,9 @@ public class PlayerControl : MonoBehaviour
         }
 
         Instantiate(smoke, transform.position - transform.up / 3, transform.rotation);
+
+        lookVector = destination.transform.position - arrow.transform.position;
+        arrow.transform.LookAt(camera.transform.position, lookVector);
     }
 
     void FixedUpdate()
