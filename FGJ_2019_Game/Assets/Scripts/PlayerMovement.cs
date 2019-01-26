@@ -12,13 +12,18 @@ public class PlayerMovement : MonoBehaviour
     public bool itemIsOperatable = false;
     float horizontalMove = 0f;
 
+    AudioSource audioS;
+
+    public AudioClip[] footSteps;
+    public AudioClip pickUpSound;
+
     bool jump = false;
     bool runFast = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioS = GetComponentInParent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,10 +58,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnLanding() {
         animator.SetBool("isJumping", false);
+        DoubleStep();
     }
 
     void FixedUpdate() {
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
+    }
+    public void Step() {
+        //
+        audioS.volume = Random.Range(0.8f, 1.0f);
+        audioS.pitch = Random.Range(0.08f,1.1f);
+        audioS.PlayOneShot(footSteps[Random.Range(0, 1)]);//footStepTwo
+    }
+    public void DoubleStep()
+    {
+        Step();
+        Step();
+    }
+    public void StashItem() {
+        audioS.volume = 1.0f;
+        audioS.pitch = 1.0f;
+        audioS.PlayOneShot(pickUpSound,1.0f);
     }
 }
