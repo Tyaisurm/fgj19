@@ -42,14 +42,17 @@ public class PlayerControl : MonoBehaviour
     {
         actualSpeed = (transform.position - lastPosition).magnitude;
         lastPosition = transform.position;
-        print(actualSpeed);
     }  
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Gravity") {
-            Instantiate(blast, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (actualSpeed > 0.03 || other.tag == "Sun") {
+                Instantiate(blast, transform.position, transform.rotation);
+                Destroy(gameObject);
+            } else {
+                // TODO: go to planet
+            }
         }
     }
 }

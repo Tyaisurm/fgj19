@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1264728268}
   - component: {fileID: 1264728267}
   m_Layer: 0
-  m_Name: Planet 1
+  m_Name: Planet_1
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1191016518148279095
 MonoBehaviour:
@@ -211,4 +211,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6665caf86f21043a89fb0efac5809c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 0.01
+  gravity: 1

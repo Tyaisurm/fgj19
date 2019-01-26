@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class UIControl : MonoBehaviour
 {
     public GameObject player;
-    private Text text;
+    private Text speedtext;
     private PlayerControl pc;
     // Start is called before the first frame update
     void Start()
     {
-        text = gameObject.GetComponent<Text>();
+        speedtext = gameObject.GetComponent<Text>();
         pc = player.GetComponent<PlayerControl>();
     }
 
@@ -19,7 +19,12 @@ public class UIControl : MonoBehaviour
     void Update()
     {
         if (player != null) {
-            text.text = string.Concat("Speed: ", Mathf.Round(pc.actualSpeed * 1000).ToString());
+            speedtext.text = string.Concat("Speed: ", Mathf.Round(pc.actualSpeed * 1000).ToString());
+            if (pc.actualSpeed > 0.03) {
+                speedtext.color = Color.red;
+            } else {
+                speedtext.color = Color.white;
+            }
         }
     }
 }

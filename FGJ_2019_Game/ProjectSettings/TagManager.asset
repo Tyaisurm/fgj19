@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - Gravity
+  - Sun
   layers:
   - Default
   - TransparentFX
