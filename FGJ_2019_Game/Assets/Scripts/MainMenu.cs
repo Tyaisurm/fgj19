@@ -31,8 +31,6 @@ public class MainMenu : MonoBehaviour
         panel.SetActive(true);
         string totext = "";
 
-        print("yay");
-
         foreach (string pass in passages) {
             if (pass.StartsWith("1")) {
                 totext = totext + pass.Substring(1) + "\n\n";

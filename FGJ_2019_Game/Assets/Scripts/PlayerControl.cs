@@ -40,6 +40,14 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Instantiate(smoke, transform.position - transform.up / 3, transform.rotation);
+
+        lookVector = destination.transform.position - arrow.transform.position;
+        arrow.transform.LookAt(camera.transform.position, lookVector);
+    }
+
+    void FixedUpdate()
+    {
         if (Input.GetKey("up")) {
             rb.AddForce(transform.up * speed * Time.deltaTime * 2);
         } else if (Input.GetKey("down")) {
@@ -55,14 +63,6 @@ public class PlayerControl : MonoBehaviour
             rb.velocity = rb.velocity * 0.9F;
         }
 
-        Instantiate(smoke, transform.position - transform.up / 3, transform.rotation);
-
-        lookVector = destination.transform.position - arrow.transform.position;
-        arrow.transform.LookAt(camera.transform.position, lookVector);
-    }
-
-    void FixedUpdate()
-    {
         actualSpeed = (transform.position - lastPosition).magnitude;
         lastPosition = transform.position;
     }  
